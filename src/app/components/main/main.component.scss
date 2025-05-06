@@ -1,0 +1,184 @@
+.main-container {
+  padding: 2rem;
+  direction: ltr;
+
+  // Header Section
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    h1 {
+      margin: 0;
+      color: #333;
+    }
+
+    .add-button {
+      display: flex;
+      align-items: center;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #218838;
+      }
+
+      img {
+        width: 16px;
+        height: 16px;
+        margin-left: 8px;
+      }
+    }
+  }
+
+  // Projects Grid
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+
+    // Project Card
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      // Card Image
+      .card-image {
+        position: relative;
+        height: 180px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .project-label {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          padding: 0.25rem 0.5rem;
+          border-radius: 4px;
+          color: white;
+          font-size: 0.8rem;
+          font-weight: bold;
+
+          &.current {
+            background-color: #007bff;
+          }
+
+          &.standing {
+            background-color: #6c757d;
+          }
+        }
+      }
+
+      // Card Content
+      .card-content {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+
+        h3 {
+          margin: 0 0 1rem 0;
+          font-size: 1.2rem;
+          color: #333;
+        }
+
+        p {
+          margin: 0 0 1rem 0;
+          color: #666;
+          line-height: 1.5;
+          flex-grow: 1;
+        }
+
+        // Edit Button
+        .edit-button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          background-color: #e9ecef;
+          border: 1px solid #ddd;
+          color: #495057;
+          cursor: pointer;
+          padding: 0.5rem;
+          margin-bottom: 0.5rem;
+          border-radius: 4px;
+          transition: background-color 0.3s;
+
+          &:hover {
+            background-color: #dee2e6;
+          }
+
+          img {
+            width: 16px;
+            height: 16px;
+            margin-left: 8px;
+          }
+        }
+
+        // Action Buttons
+        .action-buttons {
+          display: flex;
+          gap: 0.5rem;
+
+          button {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            img {
+              width: 16px;
+              height: 16px;
+              margin-left: 8px;
+            }
+          }
+
+          .manage-button {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            color: #333;
+
+            &:hover {
+              background-color: #e9ecef;
+            }
+          }
+
+          .delete-button {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            color: #dc3545;
+
+            &:hover {
+              background-color: #f1f1f1;
+            }
+          }
+        }
+      }
+    }
+  }
+}

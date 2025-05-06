@@ -1,0 +1,29 @@
+<header class="header-container">
+  <div class="logout-container">
+    <button class="logout-button">
+      <img src="assets/icons/Logout.svg" alt="Logout" class="logout-icon" />
+      <span>Logout</span>
+    </button>
+  </div>
+
+  <nav class="nav-container">
+    <ul class="nav-list">
+      <li *ngFor="let item of navItems" class="nav-item">
+        <a href="#" class="nav-link">
+          <img
+            [src]="'assets/icons/' + item.icon"
+            [alt]="item.name"
+            class="nav-icon"
+          />
+          <span>{{ item.name }}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="logo">
+    <img
+      src="assets/icons/Logo-UAQ-Charity-Association.svg"
+      alt="UAQ Charity Association Logo"
+    />
+  </div>
+</header>
