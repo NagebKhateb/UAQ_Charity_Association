@@ -1,1 +1,181 @@
-<p>add works!</p>
+<div class="add-project-container">
+  <div class="breadcrumb-container">
+    <p-breadcrumb [model]="[
+      { label: 'Projects', icon: 'pi pi-folder' },
+      { label: 'Add Project', icon: 'pi pi-plus' }
+    ]"></p-breadcrumb>
+  </div>
+
+  <button pButton class="p-button-text back-button" routerLink="/"><img src="assets/icons/Back Arrow.svg"></button>
+
+  <div class="project-form">
+    <div class="form-grid">
+      <!-- Column 1 -->
+      <div class="image-upload-column">
+        <div class="image-preview">
+          <div *ngIf="!uploadedImage; else customImage" class="placeholder-container">
+            <img src="assets/icons/Image Placeholder.svg" alt="Placeholder" class="placeholder-image">
+            <p class="dimension-hint">Thumbnail image has to be 540x350</p>
+          </div>
+          <ng-template #customImage>
+            <img [src]="uploadedImage" alt="Uploaded Image" class="uploaded-image">
+          </ng-template>
+        </div>
+        <input type="file" id="imageUpload" (change)="onImageUpload($event)" style="display: none;" accept="image/*"/>
+        <label for="imageUpload" class="upload-button">
+          <img src="assets/icons/Add Image.svg" alt="Add Image">
+          <span>Add Image</span>
+        </label>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="english-fields-column">
+        <div class="form-group">
+          <label for="projectTitle">Project Title</label>
+          <input pInputText id="projectTitle" [(ngModel)]="projectTitle" placeholder="Enter project title">
+        </div>
+
+        <div class="form-group">
+          <label for="projectDescription">Project Description</label>
+          <textarea pInputTextarea id="projectDescription" [(ngModel)]="projectDescription" 
+                    placeholder="Enter project description" rows="5"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="projectKeyword">Project Keyword</label>
+          <div class="keyword-input">
+            <input pInputText id="projectKeyword" [(ngModel)]="newKeyword" placeholder="Enter keyword"
+                   (keydown.enter)="addKeyword()">
+            <button pButton pRipple icon="pi pi-plus" class="p-button-sm" (click)="addKeyword()"></button>
+          </div>
+          <div class="keyword-chips">
+            <p-chip *ngFor="let keyword of keywords" [label]="keyword.label" [removable]="true" 
+                    (onRemove)="removeKeyword(keyword)"></p-chip>
+            <p-chip label="Clean Water" [removable]="true"></p-chip>
+            <p-chip label="Sea" [removable]="true"></p-chip>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Show this project in (Optional)</label>
+          <p-select [options]="showInOptions" [(ngModel)]="showIn" placeholder="Select option">
+            <ng-template pTemplate="dropdownicon">
+              <img src="assets/icons/Dropdown.svg" alt="Dropdown">
+            </ng-template>
+          </p-select>
+        </div>
+
+        <div class="form-group">
+          <label>Project Start Date</label>
+          <p-datepicker [style]="{'width': '100%'}" [(ngModel)]="startDate" [showIcon]="true" 
+          img="assets/icons/Calendar.svg" placeholder="Select Start Date"></p-datepicker>
+        </div>
+
+        <div class="form-group qr-upload-container">
+          <label>QR Code</label>
+          <div class="upload-wrapper">
+            <p-fileUpload mode="basic" name="qrCode" accept="image/*" 
+                          (onSelect)="onQRCodeUpload($event)" chooseLabel="Choose File"
+                          [style]="{'display': 'inline-block', 'justify-content': 'flex-end'}"></p-fileUpload>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="smsLink">SMS Link</label>
+          <input pInputText id="smsLink" [(ngModel)]="smsLink" placeholder="Enter SMS link">
+        </div>
+
+        <div class="form-group">
+          <h3>Bank Details</h3>
+        </div>
+        
+        <div class="form-group">
+          <label for="bankName">Bank Name</label>
+          <input pInputText id="bankName" [(ngModel)]="bankName" placeholder="Enter bank name">
+        </div>
+
+        <div class="form-group">
+          <label for="accountNumber">Account Number</label>
+          <input pInputText id="accountNumber" [(ngModel)]="accountNumber" placeholder="Enter account number">
+        </div>
+
+        <div class="form-group">
+          <label for="reference">Reference</label>
+          <input pInputText id="reference" [(ngModel)]="reference" placeholder="Enter reference">
+        </div>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="arabic-fields-column">
+        <div class="form-group">
+          <label for="arabicProjectTitle">عنوان المشروع</label>
+          <input pInputText id="arabicProjectTitle" placeholder="أدخل عنوان المشروع">
+        </div>
+
+        <div class="form-group">
+          <label for="arabicProjectDescription">وصف المشروع</label>
+          <textarea pInputTextarea id="arabicProjectDescription" 
+                    placeholder="أدخل وصف المشروع" rows="5"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="arabicProjectKeyword">كلمة مفتاح المشروع</label>
+          <div class="keyword-input">
+            <input pInputText id="projectKeyword" [(ngModel)]="newKeyword2" placeholder="أدخل الكلمة المفتاحية"
+                   (keydown.enter)="addKeyword()">
+            <button pButton pRipple icon="pi pi-plus" class="p-button-sm" (click)="addKeyword()"></button>
+          </div>
+          <div class="keyword-chips">
+            <p-chip *ngFor="let word of words" [label]="word.label" [removable]="true" 
+                    (onRemove)="removeKeyword(word)"></p-chip>
+            <p-chip label="ماء نظيف" [removable]="true"></p-chip>
+            <p-chip label="بحر" [removable]="true"></p-chip>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Select page number</label>
+          <p-select [options]="pageOptions" [(ngModel)]="selectPage" placeholder="Select page">
+            <ng-template pTemplate="dropdownicon">
+              <img src="assets/icons/Dropdown.svg" alt="Dropdown">
+            </ng-template>
+          </p-select>
+        </div>
+
+        <div class="form-group">
+          <label>Project End Date</label>
+          <p-datepicker [style]="{'width': '100%'}" [(ngModel)]="endDate" [showIcon]="true" 
+          img="assets/icons/Calendar.svg" placeholder="Select End Date"></p-datepicker>
+        </div>
+
+        <div class="form-group">
+          <label for="goalAmount">Goal amount</label>
+          <input pInputText id="goalAmount" type="number" [(ngModel)]="goalAmount" placeholder="Enter amount">
+        </div>
+
+        <div class="form-group">
+          <label for="paymentGatewayLink">Payment Gateway Link</label>
+          <input pInputText id="paymentGatewayLink" [(ngModel)]="paymentGatewayLink" 
+                 placeholder="Enter payment gateway link">
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <div class="form-group">
+          <label for="iban">IBAN</label>
+          <input pInputText id="iban" [(ngModel)]="iban" placeholder="Enter IBAN">
+        </div>
+
+        <div class="form-group">
+          <label for="swiftCode">Swift Code</label>
+          <input pInputText id="swiftCode" [(ngModel)]="swiftCode" placeholder="Enter swift code">
+        </div>
+      </div>
+    </div>
+
+    <button pButton pRipple label="Publish" class="publish-button" (click)="publishProject()"></button>
+  </div>
+
+  <p-toast></p-toast>
+</div>

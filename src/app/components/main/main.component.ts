@@ -5,8 +5,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
-import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -14,8 +14,8 @@ import { CommonModule } from '@angular/common';
     ConfirmDialogModule,
     ToastModule,
     ButtonModule,
-    HeaderComponent,
     CommonModule,
+    RouterModule
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
